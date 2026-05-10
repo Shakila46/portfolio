@@ -1,0 +1,47 @@
+.section { padding: 120px 0 0; }
+.container { max-width: 1160px; margin: 0 auto; padding: 0 96px; }
+
+.header { margin-bottom: 72px; }
+.num { font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: 2px; margin-bottom: 12px; }
+.title { font-family: var(--sans); font-size: clamp(40px,6vw,80px); font-weight: 800; color: var(--text1); letter-spacing: -2.5px; line-height: 1.05; margin-bottom: 20px; }
+.sub { font-size: 16px; color: var(--text2); line-height: 1.7; margin-bottom: 32px; }
+
+.email {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--mono); font-size: 15px;
+  color: var(--accent2);
+  border-bottom: 0.5px solid rgba(0,217,255,0.3);
+  padding-bottom: 4px;
+  transition: all 0.25s;
+}
+.email:hover { color: var(--text1); border-color: var(--text1); gap: 14px; }
+
+.socials { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 80px; }
+
+.socialCard {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 22px;
+  transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+  display: flex; flex-direction: column; gap: 6px;
+  backdrop-filter: blur(8px);
+}
+.socialCard:hover { border-color: rgba(123,104,238,0.3); background: rgba(123,104,238,0.05); transform: translateY(-4px); }
+
+.scTop { display: flex; align-items: center; justify-content: space-between; color: var(--text1); }
+.scName { font-weight: 700; font-size: 15px; }
+.scHandle { font-family: var(--mono); font-size: 12px; color: var(--accent); letter-spacing: 0.5px; }
+.scDesc { font-size: 12px; color: var(--text3); margin-top: 2px; }
+
+.footer {
+  border-top: 0.5px solid var(--border);
+  padding: 28px 96px;
+  text-align: center;
+}
+.footerText { font-family: var(--mono); font-size: 12px; color: var(--text3); }
+.footerLink { color: var(--accent); transition: color 0.2s; }
+.footerLink:hover { color: var(--accent2); }
+
+@media(max-width:900px) { .container,.footer { padding-left:48px; padding-right:48px; } }
+@media(max-width:640px) { .container,.footer { padding-left:24px; padding-right:24px; } .socials { grid-template-columns:1fr; } }
