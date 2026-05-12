@@ -145,18 +145,18 @@
 /* ── FLOATING PHOTO (completely outside card) ── */
 .floatingPhoto {
   position: absolute;
-  top: -182px;
-  left: -780px;
-  width: 180px;
-  height: 180px;
+  top: -80px;
+  right: -60px;
+  width: 260px;
+  height: 300px;
   z-index: 30;
-  animation: float 9s ease-in-out infinite;
+  animation: float 4s ease-in-out infinite;
 }
 
 .floatingRing {
   position: absolute;
   inset: -4px;
-  border-radius: 50%;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   background: conic-gradient(
     #7B68EE 0deg,
     #00D9FF 90deg,
@@ -164,7 +164,7 @@
     #39D98A 270deg,
     #7B68EE 360deg
   );
-  animation: spin 4s linear infinite;
+  animation: spin 6s linear infinite;
   z-index: 0;
 }
 
@@ -172,17 +172,17 @@
   content: '';
   position: absolute;
   inset: 3px;
-  border-radius: 50%;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   background: #04050a;
 }
 
 .floatingGlow {
   position: absolute;
-  inset: -16px;
+  inset: -20px;
   border-radius: 50%;
   background: radial-gradient(circle,
-    rgba(123,104,238,0.3) 0%,
-    rgba(0,217,255,0.12) 50%,
+    rgba(0,217,255,0.2) 0%,
+    rgba(123,104,238,0.1) 50%,
     transparent 70%
   );
   z-index: -1;
@@ -192,13 +192,13 @@
 .floatingImg {
   position: absolute;
   inset: 4px;
-  border-radius: 50%;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   overflow: hidden;
   z-index: 2;
   box-shadow:
     0 0 0 1.5px rgba(0,217,255,0.4),
-    0 8px 32px rgba(0,0,0,0.6),
-    0 0 24px rgba(123,104,238,0.2);
+    0 8px 40px rgba(0,0,0,0.7),
+    0 0 40px rgba(0,217,255,0.15);
 }
 
 .floatingLabel {

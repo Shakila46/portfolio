@@ -101,8 +101,8 @@ export default function Hero() {
             <Image
               src="/avatar.jpg"
               alt="Shakila Praween"
-              width={140}
-              height={140}
+              width={260}
+              height={300}
               style={{
                 objectFit: 'cover',
                 objectPosition: 'top center',
