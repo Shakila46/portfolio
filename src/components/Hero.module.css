@@ -42,7 +42,7 @@
 
 /* ── GIANT NAME ── */
 .nameWrap {
-  padding: 16px 80px 0;
+  padding: 8px 80px 0;
   line-height: 0.88;
   position: relative; z-index: 2;
   animation: fadeUp 0.9s var(--ease) 0.1s both;
@@ -68,9 +68,9 @@
 /* ── 3 COLUMN ROW ── */
 .row {
   display: grid;
-  grid-template-columns: 300px 1fr 260px;
+  grid-template-columns: 280px 1fr 240px;
   gap: 48px;
-  padding: 36px 80px 60px;
+  padding: 24px 80px 60px;
   align-items: center;
   position: relative; z-index: 2;
   flex: 1;
@@ -85,7 +85,7 @@
 }
 .photoOuter {
   position: relative;
-  width: 280px; height: 280px;
+  width: 260px; height: 260px;
   animation: float 6s ease-in-out infinite;
 }
 .photoRing {
