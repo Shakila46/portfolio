@@ -3,41 +3,20 @@ import { useEffect } from 'react'
 
 export default function CursorEffects() {
   useEffect(() => {
-    const dot = document.getElementById('cursor-dot')
-    const ring = document.getElementById('cursor-ring')
-    if (!dot || !ring) return
+    const cursor = document.getElementById('cursor')
+    const trail = document.getElementById('cursor-trail')
+    if (!cursor || !trail) return
+    let mx = 0, my = 0, tx = 0, ty = 0
 
-    let mouseX = 0, mouseY = 0
-    let ringX = 0, ringY = 0
-
-    const onMove = (e: MouseEvent) => {
-      mouseX = e.clientX
-      mouseY = e.clientY
-      dot.style.left = mouseX + 'px'
-      dot.style.top = mouseY + 'px'
-    }
-
-    const tick = () => {
-      ringX += (mouseX - ringX) * 0.12
-      ringY += (mouseY - ringY) * 0.12
-      ring.style.left = ringX + 'px'
-      ring.style.top = ringY + 'px'
-      requestAnimationFrame(tick)
-    }
+    const move = (e: MouseEvent) => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; }
+    const tick = () => { tx += (mx-tx)*0.1; ty += (my-ty)*0.1; trail.style.left = tx+'px'; trail.style.top = ty+'px'; requestAnimationFrame(tick); }
     tick()
 
-    const onEnter = () => ring.classList.add('hover')
-    const onLeave = () => ring.classList.remove('hover')
-
-    const targets = document.querySelectorAll('a, button, [data-hover]')
-    targets.forEach(el => {
-      el.addEventListener('mouseenter', onEnter)
-      el.addEventListener('mouseleave', onLeave)
-    })
-
-    window.addEventListener('mousemove', onMove)
-    return () => window.removeEventListener('mousemove', onMove)
+    const over = () => trail.classList.add('hover')
+    const out = () => trail.classList.remove('hover')
+    document.querySelectorAll('a,button,[data-hover]').forEach(el => { el.addEventListener('mouseenter', over); el.addEventListener('mouseleave', out); })
+    window.addEventListener('mousemove', move)
+    return () => window.removeEventListener('mousemove', move)
   }, [])
-
   return null
 }

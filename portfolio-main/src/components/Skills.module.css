@@ -1,0 +1,55 @@
+.section { padding: 120px 0; }
+.container { max-width: 1160px; margin: 0 auto; padding: 0 96px; }
+
+.header { margin-bottom: 64px; }
+.num { font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: 2px; margin-bottom: 8px; }
+.title {
+  font-family: var(--sans); font-size: clamp(32px, 4vw, 52px);
+  font-weight: 800; color: var(--text1); letter-spacing: -1.5px;
+}
+
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+.card {
+  background: rgba(255,255,255,0.02);
+  border: 0.5px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 28px 24px;
+  transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+  position: relative; overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+.card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.card:hover { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); transform: translateY(-4px); }
+.card:hover::before { opacity: 1; }
+
+.cardTop { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
+.cardIcon { font-size: 22px; }
+.cardLabel {
+  font-family: var(--mono); font-size: 12px; font-weight: 500;
+  color: var(--accent-color); letter-spacing: 2px; text-transform: uppercase;
+}
+
+.bars { display: flex; flex-direction: column; gap: 14px; }
+.barRow {}
+.barMeta { display: flex; justify-content: space-between; margin-bottom: 6px; }
+.barName { font-size: 13px; color: var(--text2); }
+.barPct { font-family: var(--mono); font-size: 11px; color: var(--text3); }
+.barTrack {
+  height: 3px; background: rgba(255,255,255,0.05);
+  border-radius: 2px; overflow: hidden;
+}
+.barFill {
+  height: 100%; width: 0; border-radius: 2px;
+  background: var(--color);
+  transition: width 1.2s cubic-bezier(0.16,1,0.3,1) var(--delay);
+}
+.reveal.visible .barFill { width: var(--w); }
+
+@media(max-width:900px) { .container { padding: 0 48px; } }
+@media(max-width:640px) { .container { padding: 0 24px; } .grid { grid-template-columns:1fr; } }

@@ -4,6 +4,7 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Shakila Praween — Full Stack Developer',
   description: 'Flutter & React developer crafting cross-platform apps and AI-powered solutions.',
+  themeColor: '#04050a',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -12,12 +13,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
       </head>
       <body>
-        <div className="noise" aria-hidden="true" />
-        <div id="cursor" aria-hidden="true" />
-        <div id="cursor-trail" aria-hidden="true" />
+        <div className="noise-overlay" aria-hidden="true" />
+        <div id="cursor-dot" aria-hidden="true" />
+        <div id="cursor-ring" aria-hidden="true" />
         {children}
       </body>
     </html>
