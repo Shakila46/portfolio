@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import styles from './Hero.module.css'
 
-const roles = ['Flutter Developer','React Engineer','Next.js Builder','AI Integrator','Full Stack Dev']
+const roles = ['Flutter Developer','React Engineer','Next.js Builder','AI Integrator','Full Stack Dev','DevOps Enthusiast']
 
 export default function Hero() {
   const [roleIdx, setRoleIdx] = useState(0)
@@ -37,7 +37,7 @@ export default function Hero() {
           <span className={styles.statusDiv}>/</span>
           <span className={styles.statusItem}>Full Stack Dev</span>
           <span className={styles.statusDiv}>/</span>
-          <span className={styles.statusItem}>2+ Yrs Exp</span>
+      
         </div>
       </div>
 
