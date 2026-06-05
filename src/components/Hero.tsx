@@ -57,7 +57,8 @@ export default function Hero() {
         <div className={styles.photoCol}>
           <div className={styles.photoOuter}>
             <div className={styles.photoRing} />
-            <div className={styles.photoGlow} />
+            <div className={styles.photoRing2} />
+              <div className={styles.photoGlow} />
             <div className={styles.photoCircle}>
               <Image
                 src="/avatar.jpg"

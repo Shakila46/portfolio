@@ -23,7 +23,7 @@ export default function Navbar() {
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
       <a href="#" className={styles.logo} data-hover>
-        <span className={styles.logoBracket}>[</span>SP<span className={styles.logoBracket}>]</span>
+        <span className={styles.logoBracket}>[</span>Shakila Praween<span className={styles.logoBracket}>]</span>
       </a>
 
       <ul className={`${styles.links} ${open ? styles.open : ''}`}>
