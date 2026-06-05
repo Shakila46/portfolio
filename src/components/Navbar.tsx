@@ -43,7 +43,7 @@ export default function Navbar() {
 
       <button className={styles.burger} onClick={() => setOpen(!open)} aria-label="menu" data-hover>
         <span className={`${styles.b} ${open ? styles.bo1 : ''}`}/>
-        <span className={`${styles.b} ${open ? styles.bo2 : ''}`}/>
+        <span className={`${styles.b} ${open ? styles.bo2 : ''}`}/>ෂ්
         <span className={`${styles.b} ${open ? styles.bo3 : ''}`}/>
       </button>
     </nav>
