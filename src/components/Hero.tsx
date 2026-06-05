@@ -119,7 +119,7 @@ export default function Hero() {
             {[
               { n:'10+', l:'Projects\nCompleted' },
               { n:'2+',  l:'Years of\nExperience' },
-              { n:'5★',  l:'Client\nRating' },
+              
               { n:'∞',   l:'Lines of\nCode' },
             ].map(s => (
               <div key={s.l} className={styles.statItem}>
