@@ -5,7 +5,7 @@ export default function Contact() {
     <section className={styles.section} id="contact">
       <p className={styles.label}>Get in touch</p>
       <h2 className={styles.title}>Contact</h2>
-      <p className={styles.sub}>Open to internship opportunities — let&apos;s connect</p>
+     
       <div className={styles.wrap}>
         <a href="mailto:shakilapraween46@gmail.com" className={styles.chip}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16">
