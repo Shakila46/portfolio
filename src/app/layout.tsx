@@ -1,25 +1,28 @@
-import type { Metadata } from 'next'
-import './globals.css'
+import type { Metadata } from "next";
+import { Syne, DM_Sans } from "next/font/google";
+import "./globals.css";
+
+const syne = Syne({
+  subsets: ["latin"],
+  variable: "--font-syne",
+  weight: ["400", "700", "800"],
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-dm",
+  weight: ["300", "400", "500"],
+});
 
 export const metadata: Metadata = {
-  title: 'Shakila Praween — Full Stack Developer',
-  description: 'Flutter & React developer crafting cross-platform apps and AI-powered solutions.',
-}
+  title: "Shakila Praween | Software Engineer",
+  description: "Software Engineering undergraduate at NSBM Green University. Building fullstack & mobile applications with React, Next.js, Flutter and Java EE.",
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet" />
-      </head>
-      <body>
-        <div className="noise" aria-hidden="true" />
-        <div id="cursor" aria-hidden="true" />
-        <div id="cursor-trail" aria-hidden="true" />
-        {children}
-      </body>
+    <html lang="en" className={`${syne.variable} ${dmSans.variable}`}>
+      <body>{children}</body>
     </html>
-  )
+  );
 }
