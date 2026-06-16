@@ -45,7 +45,8 @@
   font-size: 0.875rem;
   color: #7a7a9a;
   text-decoration: none;
-  transition: border-color 0.25s, color 0.25s, transform 0.25s;
+  transition: border-color 0.25s, color 0.25s, transform 0.25s, background 0.25s;
+  font-family: inherit;
 }
 
 .chip:hover {
@@ -55,3 +56,78 @@
 }
 
 .chip svg { opacity: 0.7; flex-shrink: 0; }
+
+/* Email copy button */
+.emailBtn {
+  cursor: pointer;
+  background: #0f0f1a;
+}
+
+.emailBtn:hover {
+  border-color: #7b6fff;
+  color: #eeeef8;
+  background: rgba(123, 111, 255, 0.07);
+}
+
+/* Copied! success state */
+.copied {
+  border-color: #00e5a0 !important;
+  color: #00e5a0 !important;
+  background: rgba(0, 229, 160, 0.08) !important;
+  transform: translateY(-3px);
+}
+
+.copied svg {
+  opacity: 1 !important;
+  stroke: #00e5a0;
+}
+
+/* ── Tablet ── */
+@media (max-width: 1024px) {
+  .section {
+    padding: 5rem 2rem;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 1.25rem 3rem;
+  }
+
+  .title {
+    font-size: 1.9rem;
+  }
+
+  .wrap {
+    gap: 0.7rem;
+  }
+
+  .chip {
+    font-size: 0.82rem;
+    padding: 0.7rem 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 3.5rem 1rem 2.5rem;
+  }
+
+  .title {
+    font-size: 1.7rem;
+  }
+
+  .wrap {
+    flex-direction: column;
+  }
+
+  .chip {
+    width: 100%;
+    justify-content: center;
+  }
+}

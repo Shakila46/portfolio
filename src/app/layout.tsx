@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Syne, DM_Sans } from "next/font/google";
-import "./globals.css";
+// import "./globals.css";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -16,7 +16,14 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: "Shakila Praween | Software Engineer",
-  description: "Software Engineering undergraduate at NSBM Green University. Building fullstack & mobile applications with React, Next.js, Flutter and Java EE.",
+  description:
+    "Software Engineering undergraduate at NSBM Green University. Building fullstack & mobile applications with React, Next.js, Flutter and Java EE.",
+};
+
+// ✅ Viewport export — Next.js 13+ recommended way (not in metadata)
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
