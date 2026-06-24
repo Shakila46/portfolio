@@ -61,6 +61,33 @@
 .links a:hover { color: #eeeef8; }
 .links a:hover::after { width: 100%; }
 
+/* Login button in desktop nav */
+.loginBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  background: rgba(123, 111, 255, 0.1);
+  border: 1px solid rgba(123, 111, 255, 0.25);
+  border-radius: 100px;
+  color: #a99fff !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: background 0.25s, border-color 0.25s, color 0.25s !important;
+}
+
+.loginBtn::after {
+  display: none !important;
+}
+
+.loginBtn:hover {
+  background: rgba(123, 111, 255, 0.2) !important;
+  border-color: rgba(123, 111, 255, 0.5) !important;
+  color: #fff !important;
+}
+
 /* Hamburger button — hidden on desktop */
 .hamburger {
   display: none;
@@ -138,6 +165,26 @@
 
 .mobileMenu a:hover {
   color: #7b6fff;
+}
+
+/* Mobile login button */
+.mobileLoginBtn {
+  display: flex !important;
+  align-items: center;
+  gap: 0.5rem;
+  color: #a99fff !important;
+  font-weight: 600 !important;
+  border-bottom: none !important;
+  margin-top: 0.5rem;
+  padding: 0.8rem 1rem !important;
+  background: rgba(123, 111, 255, 0.08);
+  border: 1px solid rgba(123, 111, 255, 0.2) !important;
+  border-radius: 10px;
+}
+
+.mobileLoginBtn:hover {
+  background: rgba(123, 111, 255, 0.15);
+  color: #fff !important;
 }
 
 /* Backdrop */

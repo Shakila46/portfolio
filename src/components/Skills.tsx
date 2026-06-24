@@ -1,3 +1,4 @@
+"use client";
 import styles from "./Skills.module.css";
 
 const SKILLS = [
@@ -10,14 +11,23 @@ const SKILLS = [
 ];
 
 export default function Skills() {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
+  };
+
   return (
-    <section className={styles.section} id="skills">
+    <section className={`${styles.section} reveal`} id="skills">
       <p className={styles.label}>Capabilities</p>
       <h2 className={styles.title}>Technical Skills</h2>
       <p className={styles.sub}>What I bring to the table</p>
-      <div className={styles.grid}>
+      <div className={`${styles.grid} reveal-stagger`}>
         {SKILLS.map((s) => (
-          <div key={s.cat} className={styles.card}>
+          <div key={s.cat} className={styles.card} onMouseMove={handleMouseMove}>
             <div className={styles.cat}>{s.cat}</div>
             <div className={styles.tags}>
               {s.tags.map((t) => (

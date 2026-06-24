@@ -1,0 +1,61 @@
+{
+  "name": "Shakila",
+  "typingWords": [
+    "Praween",
+    "a Developer",
+    "a Builder",
+    "a Creator"
+  ],
+  "roles": [
+    {
+      "text": "⚡ Full-Stack Developer",
+      "className": "roleFs"
+    },
+    {
+      "text": "🎨 Frontend Developer",
+      "className": "roleFe"
+    },
+    {
+      "text": "⚙️ Backend Developer",
+      "className": "roleBe"
+    },
+    {
+      "text": "📱 Mobile Developer",
+      "className": "roleMob"
+    },
+    {
+      "text": "☕ Java Developer",
+      "className": "roleJava"
+    }
+  ],
+  "description": "SUPER Software Engineering undergraduate at <strong>NSBM Green University</strong>. Building fullstack &amp; mobile applications with <strong>React, Next.js, Flutter</strong> and <strong>Java&nbsp;EE</strong>. Passionate about clean, scalable code.",
+  "cvLink": "/cv.pdf",
+  "avatar": "/avatar.jpg",
+  "floatingTags": [
+    {
+      "text": "React & Next.js",
+      "color": "#7b6fff",
+      "className": "ft1"
+    },
+    {
+      "text": "Flutter Dev",
+      "color": "#00e5a0",
+      "className": "ft2"
+    },
+    {
+      "text": "Java & Spring Boot",
+      "color": "#fb923c",
+      "className": "ft3"
+    },
+    {
+      "text": "Figma & UI Design",
+      "color": "#ff6b9d",
+      "className": "ft4"
+    },
+    {
+      "text": "Tech Enthusiast",
+      "color": "#ff6b9d",
+      "className": "ft5"
+    }
+  ]
+}

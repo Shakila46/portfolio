@@ -1,13 +1,86 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styles from "./Contact.module.css";
 
 const EMAIL = "shakilapraween46@gmail.com";
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const animRef = useRef<number | null>(null);
 
-  const copyEmail = async () => {
+  const triggerConfetti = (e: React.MouseEvent) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+
+    const clickX = e.clientX - rect.left;
+    const clickY = e.clientY - rect.top;
+
+    const particles: any[] = [];
+    const colors = ["#7b6fff", "#00e5a0", "#ff6b9d", "#fb923c", "#38bdf8"];
+
+    for (let i = 0; i < 70; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 5 + 3.5;
+      particles.push({
+        x: clickX,
+        y: clickY,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - Math.random() * 2.5 - 1.5,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        size: Math.random() * 4 + 4,
+        rotation: Math.random() * 360,
+        rotationSpeed: (Math.random() - 0.5) * 8,
+        opacity: 1,
+        gravity: 0.18,
+        decay: Math.random() * 0.015 + 0.012
+      });
+    }
+
+    if (animRef.current) cancelAnimationFrame(animRef.current);
+
+    function animate() {
+      if (!ctx || !canvas) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      let alive = false;
+
+      particles.forEach((p) => {
+        if (p.opacity <= 0) return;
+        alive = true;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += p.gravity;
+        p.vx *= 0.98;
+        p.vy *= 0.98;
+        p.rotation += p.rotationSpeed;
+        p.opacity -= p.decay;
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.globalAlpha = Math.max(0, p.opacity);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 1.4);
+        ctx.restore();
+      });
+
+      if (alive) {
+        animRef.current = requestAnimationFrame(animate);
+      }
+    }
+    animate();
+  };
+
+  const copyEmail = async (e: React.MouseEvent) => {
+    // Fire confetti burst
+    triggerConfetti(e);
+
     try {
       await navigator.clipboard.writeText(EMAIL);
       setCopied(true);
@@ -26,12 +99,15 @@ export default function Contact() {
   };
 
   return (
-    <section className={styles.section} id="contact">
+    <section className={`${styles.section} reveal`} id="contact" style={{ position: "relative" }}>
+      <canvas
+        ref={canvasRef}
+        style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 5, width: "100%", height: "100%" }}
+      />
       <p className={styles.label}>Get in touch</p>
       <h2 className={styles.title}>Contact</h2>
 
-      <div className={styles.wrap}>
-
+      <div className={`${styles.wrap} reveal-stagger`}>
         {/* Email — copy to clipboard */}
         <button onClick={copyEmail} className={`${styles.chip} ${styles.emailBtn} ${copied ? styles.copied : ""}`}>
           {copied ? (

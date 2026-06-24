@@ -20,7 +20,7 @@ export default function ScrollEffects() {
       },
       { threshold: 0.12 }
     );
-    document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
+    document.querySelectorAll(".reveal, .reveal-stagger").forEach((el) => obs.observe(el));
 
     return () => {
       window.removeEventListener("scroll", onScroll);

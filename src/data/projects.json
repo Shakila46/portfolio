@@ -1,0 +1,56 @@
+[
+  {
+    "icon": "🌱",
+    "title": "GoviMaga",
+    "gh": "https://github.com/Shakila46/GoviMaga-Mobile-App-Flutter.git",
+    "figma": "https://www.figma.com/design/4C435S82PK6qgJ9EnBFAbD/GoviMaga-App-UI?node-id=0-1",
+    "desc": "Cross-platform Flutter app for Sri Lankan farmers with real-time GPS weather, FCM push notifications, and 60fps performance on low-end devices.",
+    "stack": ["Flutter", "Dart", "Firebase", "BLoC", "REST API"],
+    "screenshots": []
+  },
+  {
+    "icon": "🚚",
+    "title": "Bidzy",
+    "gh": "https://github.com/Shakila46/Bidzy.git",
+    "figma": "https://www.figma.com/design/3yez3sLhEi4WFjQq35wBcE/BidzyUI?node-id=411-2516",
+    "desc": "Real-time logistics bidding platform. Live bid updates via WebSockets. .NET C# REST APIs with Next.js SSR frontend.",
+    "stack": ["Next.js", ".NET C#", "WebSockets", "TailwindCSS"],
+    "screenshots": []
+  },
+  {
+    "icon": "☕",
+    "title": "LatteLane",
+    "gh": "https://github.com/Shakila46/lattelane.git",
+    "figma": "https://www.figma.com/design/xFo7vpLCLd4jELmtkcwAWa/LatteLane?node-id=0-1",
+    "desc": "Full-stack café web app — product catalogue, menu browsing, order management. PHP REST APIs with accessible React UI.",
+    "stack": ["React.js", "Next.js", "PHP", "TailwindCSS"],
+    "screenshots": []
+  },
+  {
+    "icon": "🛒",
+    "title": "HyperPOS",
+    "gh": "https://github.com/Shakila46/HyperPOS-Frontend-.git",
+    "figma": null,
+    "desc": "Pixel-perfect POS frontend from Figma to code. Spring Boot backend integration for product and inventory management.",
+    "stack": ["React.js", "Next.js", "Spring Boot", "Figma"],
+    "screenshots": []
+  },
+  {
+    "icon": "🤖",
+    "title": "AI Assignment Helper",
+    "gh": "https://github.com/Shakila46/MY_Assignment_Ai.git",
+    "figma": null,
+    "desc": "Lightweight AI tool using Python, Streamlit and Groq API for context-aware structured academic content generation.",
+    "stack": ["Python", "Streamlit", "Groq API"],
+    "screenshots": []
+  },
+  {
+    "icon": "⚙️",
+    "title": "CI/CD Pipeline",
+    "gh": "https://github.com/Shakila46/github-actions-learning.git",
+    "figma": null,
+    "desc": "Automated GitHub Actions workflows for build, test, deployment. YAML-defined quality checks on every push and pull request.",
+    "stack": ["GitHub Actions", "YAML", "DevOps"],
+    "screenshots": []
+  }
+]

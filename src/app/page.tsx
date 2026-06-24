@@ -28,8 +28,15 @@ export default function Home() {
       <Projects />
       <hr style={{ border: "none", borderTop: "1px solid #252538", position: "relative", zIndex: 1 }} />
       <Contact />
-      <footer style={{ borderTop: "1px solid #252538", padding: "2rem 3rem", textAlign: "center", color: "#7a7a9a", fontSize: ".78rem", position: "relative", zIndex: 1 }}>
-        Designed &amp; built by Shakila Praween &nbsp;·&nbsp; Western Province, Sri Lanka
+      <footer style={{ borderTop: "1px solid #252538", padding: "2rem 3rem", color: "#7a7a9a", fontSize: ".78rem", position: "relative", zIndex: 1, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
+        <span>Designed &amp; built by Shakila Praween &nbsp;·&nbsp; Western Province, Sri Lanka</span>
+        <a href="/login" className="footer-link">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          Admin Portal
+        </a>
       </footer>
     </>
   );

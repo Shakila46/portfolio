@@ -45,9 +45,9 @@ body::before {
 /* Scroll reveal */
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(30px);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal.visible {
@@ -55,13 +55,29 @@ body::before {
   transform: none;
 }
 
-/* Stagger children */
-.reveal > *:nth-child(1) { transition-delay: 0s; }
-.reveal > *:nth-child(2) { transition-delay: 0.08s; }
-.reveal > *:nth-child(3) { transition-delay: 0.16s; }
-.reveal > *:nth-child(4) { transition-delay: 0.24s; }
-.reveal > *:nth-child(5) { transition-delay: 0.32s; }
-.reveal > *:nth-child(6) { transition-delay: 0.40s; }
+/* Staggered group reveal */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-stagger.visible > * {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-stagger.visible > *:nth-child(1) { transition-delay: 0.05s; }
+.reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.12s; }
+.reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.19s; }
+.reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.26s; }
+.reveal-stagger.visible > *:nth-child(5) { transition-delay: 0.33s; }
+.reveal-stagger.visible > *:nth-child(6) { transition-delay: 0.40s; }
+.reveal-stagger.visible > *:nth-child(7) { transition-delay: 0.47s; }
+.reveal-stagger.visible > *:nth-child(8) { transition-delay: 0.54s; }
+.reveal-stagger.visible > *:nth-child(9) { transition-delay: 0.61s; }
+.reveal-stagger.visible > *:nth-child(10) { transition-delay: 0.68s; }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 4px; }
@@ -71,3 +87,18 @@ body::before {
 
 /* Selection */
 ::selection { background: rgba(123, 111, 255, 0.3); color: var(--txt); }
+
+/* Footer Admin Portal Link */
+.footer-link {
+  color: #7b6fff;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: color 0.25s;
+}
+
+.footer-link:hover {
+  color: #00e5a0;
+}

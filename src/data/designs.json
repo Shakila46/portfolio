@@ -1,0 +1,58 @@
+[
+  {
+    "title": "GoviMaga App UI",
+    "figma": "https://www.figma.com/design/4C435S82PK6qgJ9EnBFAbD/GoviMaga-App-UI?node-id=0-1",
+    "thumb": "https://www.figma.com/file/4C435S82PK6qgJ9EnBFAbD/thumbnail?node-id=0-1&in-better-link-exp=true",
+    "desc": "Mobile UI design for the GoviMaga agricultural app — screens for weather, crop advisory, and farmer dashboard.",
+    "tags": ["Mobile UI", "Flutter", "Figma"],
+    "color": "#00e5a0"
+  },
+  {
+    "title": "HCI Redesign",
+    "figma": "https://www.figma.com/design/bC0oMk4Zn4nwUd4RTEG6Ij/HCI-redesign?node-id=0-1",
+    "thumb": "https://www.figma.com/file/bC0oMk4Zn4nwUd4RTEG6Ij/thumbnail?node-id=0-1&in-better-link-exp=true",
+    "desc": "Human-Computer Interaction redesign project — focused on usability, accessibility, and modern design principles.",
+    "tags": ["HCI", "UX Research", "Redesign"],
+    "color": "#7b6fff"
+  },
+  {
+    "title": "IslandWise",
+    "figma": "https://www.figma.com/design/bHlffstDCcuVra5B0SOdcK/IslandWise?node-id=598-1044",
+    "thumb": "https://www.figma.com/file/bHlffstDCcuVra5B0SOdcK/thumbnail?node-id=598-1044&in-better-link-exp=true",
+    "desc": "Travel & tourism platform UI for Sri Lanka — destination discovery, itinerary planning, and local guides.",
+    "tags": ["Web UI", "Tourism", "Figma"],
+    "color": "#38bdf8"
+  },
+  {
+    "title": "CeyGoTest",
+    "figma": "https://www.figma.com/design/v8I4UcNyqJMFxa1dN5RZYH/CeyGoTest?node-id=0-1",
+    "thumb": "https://www.figma.com/file/v8I4UcNyqJMFxa1dN5RZYH/thumbnail?node-id=0-1&in-better-link-exp=true",
+    "desc": "UI design for a testing and QA platform — test management, reporting, and team collaboration flows.",
+    "tags": ["Dashboard UI", "QA Tool", "Figma"],
+    "color": "#ff6b9d"
+  },
+  {
+    "title": "LatteLane",
+    "figma": "https://www.figma.com/design/xFo7vpLCLd4jELmtkcwAWa/LatteLane?node-id=0-1",
+    "thumb": "https://www.figma.com/file/xFo7vpLCLd4jELmtkcwAWa/thumbnail?node-id=0-1&in-better-link-exp=true",
+    "desc": "End-to-end café web app design — wireframes to high-fidelity prototypes with a consistent design system.",
+    "tags": ["Web UI", "Cafe App", "Design System"],
+    "color": "#fb923c"
+  },
+  {
+    "title": "BP — ERP Group 15",
+    "figma": "https://www.figma.com/design/REIchLjAAjONt7typlN1rw/BP---ERP-Group-15?node-id=0-1",
+    "thumb": "https://www.figma.com/file/REIchLjAAjONt7typlN1rw/thumbnail?node-id=0-1&in-better-link-exp=true",
+    "desc": "Enterprise Resource Planning system UI — modules for inventory, HR, finance, and reporting dashboards.",
+    "tags": ["ERP", "Enterprise UI", "Figma"],
+    "color": "#a78bfa"
+  },
+  {
+    "title": "Bidzy UI",
+    "figma": "https://www.figma.com/design/3yez3sLhEi4WFjQq35wBcE/BidzyUI?node-id=411-2516",
+    "thumb": "https://www.figma.com/file/3yez3sLhEi4WFjQq35wBcE/thumbnail?node-id=411-2516&in-better-link-exp=true",
+    "desc": "Logistics bidding platform UI — real-time bid dashboard, shipper and carrier flows, competitive bidding interface.",
+    "tags": ["Web UI", "Logistics", "Real-time"],
+    "color": "#00e5a0"
+  }
+]

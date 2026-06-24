@@ -255,7 +255,7 @@
 
 /* Floating tags */
 .ftag {
-  position: absolute;
+  position: relative;
   background: rgba(15, 15, 26, 0.9);
   border: 3px solid #252538;
   border-radius: 10px;
@@ -280,39 +280,31 @@
   flex-shrink: 0;
 }
 
-.ft1 {
-  top: 10%;
-  right: -4%;
-  animation: float 3s ease-in-out infinite;
-}
+.ft1 { animation: float1 4s ease-in-out infinite; }
+.ft2 { animation: float2 5.5s ease-in-out 0.4s infinite; }
+.ft3 { animation: float3 3.6s ease-in-out 1.2s infinite; }
+.ft4 { animation: float4 4.8s ease-in-out 0.8s infinite; }
+.ft5 { animation: float5 5s ease-in-out 1.6s infinite; }
 
-.ft2 {
-  bottom: 15%;
-  left: -3%;
-  animation: float 3s ease-in-out 0.8s infinite;
+@keyframes float1 {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-11px) rotate(1.5deg); }
 }
-
-.ft3 {
-  top: 50%;
-  right: -15%;
-  animation: float 3s ease-in-out 1.5s infinite;
+@keyframes float2 {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(-2deg); }
 }
-
-.ft4 {
-  top: -5%;
-  left: 5%;
-  animation: float 3s ease-in-out 1.5s infinite;
+@keyframes float3 {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(1.2deg); }
 }
-
-.ft5 {
-  top: 110%;
-  left: 50%;
-  animation: float 3s ease-in-out 1.5s infinite;
+@keyframes float4 {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(-1.5deg); }
 }
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+@keyframes float5 {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
 }
 
 /* ── Tablet (max 1024px) ── */
@@ -404,8 +396,8 @@
   }
 
   /* Hide floating tags on mobile — they overflow */
-  .ft1, .ft2, .ft3, .ft4, .ft5 {
-    display: none;
+  .ft1, .ft2, .ft3, .ft4, .ft5, .ftagWrapper {
+    display: none !important;
   }
 
   .photoWrap {

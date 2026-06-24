@@ -35,46 +35,110 @@
 }
 
 .card {
-  background: #0f0f1a;
-  border: 1px solid #252538;
-  border-radius: 14px;
-  padding: 1.4rem;
-  transition: border-color 0.3s, transform 0.3s;
+  position: relative;
+  background: #0d0d18;
+  border: 1px solid rgba(37, 37, 56, 0.6);
+  border-radius: 16px;
+  padding: 1.6rem;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s;
+  z-index: 1;
+}
+
+/* Mouse following glow radial spotlight background */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    250px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(123, 111, 255, 0.08),
+    transparent 85%
+  );
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* Mouse following border spotlight glow */
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    200px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(0, 229, 160, 0.45),
+    transparent 70%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
 .card:hover {
-  border-color: #7b6fff;
-  transform: translateY(-4px);
+  transform: translateY(-5px);
+  border-color: rgba(123, 111, 255, 0.35);
+  box-shadow: 0 10px 30px -15px rgba(7, 7, 14, 0.7);
+}
+
+.card:hover::before,
+.card:hover::after {
+  opacity: 1;
 }
 
 .cat {
-  font-size: 0.68rem;
+  position: relative;
+  z-index: 3;
+  font-size: 0.7rem;
   letter-spacing: 0.12em;
   color: #00e5a0;
   text-transform: uppercase;
-  font-weight: 500;
-  margin-bottom: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.9rem;
+  transition: color 0.3s;
+}
+
+.card:hover .cat {
+  color: #fff;
 }
 
 .tags {
+  position: relative;
+  z-index: 3;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.45rem;
 }
 
 .tag {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid #252538;
-  border-radius: 6px;
-  padding: 0.25rem 0.6rem;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(37, 37, 56, 0.8);
+  border-radius: 8px;
+  padding: 0.28rem 0.65rem;
   font-size: 0.75rem;
   color: #7a7a9a;
-  transition: color 0.2s, border-color 0.2s;
+  transition: color 0.3s, border-color 0.3s, background-color 0.3s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: inline-block;
 }
 
 .card:hover .tag {
-  border-color: rgba(123, 111, 255, 0.3);
+  border-color: rgba(123, 111, 255, 0.25);
   color: #eeeef8;
+  background: rgba(123, 111, 255, 0.04);
+}
+
+.tag:hover {
+  transform: scale(1.1) translateY(-2px);
+  background: rgba(123, 111, 255, 0.15) !important;
+  border-color: rgba(123, 111, 255, 0.55) !important;
+  color: #fff !important;
 }
 
 /* ── Tablet ── */

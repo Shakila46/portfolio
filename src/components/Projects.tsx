@@ -1,114 +1,80 @@
+"use client";
+import React, { useEffect, useState } from "react";
 import styles from "./Projects.module.css";
+import ProjectModal from "./ProjectModal";
 
-const PROJECTS = [
-  {
-    icon: "🌱", title: "GoviMaga", gh: "https://github.com/Shakila46/GoviMaga-Mobile-App-Flutter.git",
-    figma: "https://www.figma.com/design/4C435S82PK6qgJ9EnBFAbD/GoviMaga-App-UI?node-id=0-1",
-    desc: "Cross-platform Flutter app for Sri Lankan farmers with real-time GPS weather, FCM push notifications, and 60fps performance on low-end devices.",
-    stack: ["Flutter", "Dart", "Firebase", "BLoC", "REST API"],
-  },
-  {
-    icon: "🚚", title: "Bidzy", gh: "https://github.com/Shakila46/Bidzy.git",
-    figma: "https://www.figma.com/design/3yez3sLhEi4WFjQq35wBcE/BidzyUI?node-id=411-2516",
-    desc: "Real-time logistics bidding platform. Live bid updates via WebSockets. .NET C# REST APIs with Next.js SSR frontend.",
-    stack: ["Next.js", ".NET C#", "WebSockets", "TailwindCSS"],
-  },
-  {
-    icon: "☕", title: "LatteLane", gh: "https://github.com/Shakila46/lattelane.git",
-    figma: "https://www.figma.com/design/xFo7vpLCLd4jELmtkcwAWa/LatteLane?node-id=0-1",
-    desc: "Full-stack café web app — product catalogue, menu browsing, order management. PHP REST APIs with accessible React UI.",
-    stack: ["React.js", "Next.js", "PHP", "TailwindCSS"],
-  },
-  {
-    icon: "🛒", title: "HyperPOS", gh: "https://github.com/Shakila46/HyperPOS-Frontend-.git",
-    figma: null,
-    desc: "Pixel-perfect POS frontend from Figma to code. Spring Boot backend integration for product and inventory management.",
-    stack: ["React.js", "Next.js", "Spring Boot", "Figma"],
-  },
-  {
-    icon: "🤖", title: "AI Assignment Helper", gh: "https://github.com/Shakila46/MY_Assignment_Ai.git",
-    figma: null,
-    desc: "Lightweight AI tool using Python, Streamlit and Groq API for context-aware structured academic content generation.",
-    stack: ["Python", "Streamlit", "Groq API"],
-  },
-  {
-    icon: "⚙️", title: "CI/CD Pipeline", gh: "https://github.com/Shakila46/github-actions-learning.git",
-    figma: null,
-    desc: "Automated GitHub Actions workflows for build, test, deployment. YAML-defined quality checks on every push and pull request.",
-    stack: ["GitHub Actions", "YAML", "DevOps"],
-  },
-];
+interface Project {
+  icon: string;
+  title: string;
+  gh: string;
+  figma: string | null;
+  desc: string;
+  stack: string[];
+  screenshots: string[];
+}
 
-const DESIGNS = [
-  {
-    title: "GoviMaga App UI",
-    figma: "https://www.figma.com/design/4C435S82PK6qgJ9EnBFAbD/GoviMaga-App-UI?node-id=0-1",
-    thumb: "https://www.figma.com/file/4C435S82PK6qgJ9EnBFAbD/thumbnail?node-id=0-1&in-better-link-exp=true",
-    desc: "Mobile UI design for the GoviMaga agricultural app — screens for weather, crop advisory, and farmer dashboard.",
-    tags: ["Mobile UI", "Flutter", "Figma"],
-    color: "#00e5a0",
-  },
-  {
-    title: "HCI Redesign",
-    figma: "https://www.figma.com/design/bC0oMk4Zn4nwUd4RTEG6Ij/HCI-redesign?node-id=0-1",
-    thumb: "https://www.figma.com/file/bC0oMk4Zn4nwUd4RTEG6Ij/thumbnail?node-id=0-1&in-better-link-exp=true",
-    desc: "Human-Computer Interaction redesign project — focused on usability, accessibility, and modern design principles.",
-    tags: ["HCI", "UX Research", "Redesign"],
-    color: "#7b6fff",
-  },
-  {
-    title: "IslandWise",
-    figma: "https://www.figma.com/design/bHlffstDCcuVra5B0SOdcK/IslandWise?node-id=598-1044",
-    thumb: "https://www.figma.com/file/bHlffstDCcuVra5B0SOdcK/thumbnail?node-id=598-1044&in-better-link-exp=true",
-    desc: "Travel & tourism platform UI for Sri Lanka — destination discovery, itinerary planning, and local guides.",
-    tags: ["Web UI", "Tourism", "Figma"],
-    color: "#38bdf8",
-  },
-  {
-    title: "CeyGoTest",
-    figma: "https://www.figma.com/design/v8I4UcNyqJMFxa1dN5RZYH/CeyGoTest?node-id=0-1",
-    thumb: "https://www.figma.com/file/v8I4UcNyqJMFxa1dN5RZYH/thumbnail?node-id=0-1&in-better-link-exp=true",
-    desc: "UI design for a testing and QA platform — test management, reporting, and team collaboration flows.",
-    tags: ["Dashboard UI", "QA Tool", "Figma"],
-    color: "#ff6b9d",
-  },
-  {
-    title: "LatteLane",
-    figma: "https://www.figma.com/design/xFo7vpLCLd4jELmtkcwAWa/LatteLane?node-id=0-1",
-    thumb: "https://www.figma.com/file/xFo7vpLCLd4jELmtkcwAWa/thumbnail?node-id=0-1&in-better-link-exp=true",
-    desc: "End-to-end café web app design — wireframes to high-fidelity prototypes with a consistent design system.",
-    tags: ["Web UI", "Cafe App", "Design System"],
-    color: "#fb923c",
-  },
-  {
-    title: "BP — ERP Group 15",
-    figma: "https://www.figma.com/design/REIchLjAAjONt7typlN1rw/BP---ERP-Group-15?node-id=0-1",
-    thumb: "https://www.figma.com/file/REIchLjAAjONt7typlN1rw/thumbnail?node-id=0-1&in-better-link-exp=true",
-    desc: "Enterprise Resource Planning system UI — modules for inventory, HR, finance, and reporting dashboards.",
-    tags: ["ERP", "Enterprise UI", "Figma"],
-    color: "#a78bfa",
-  },
-  {
-    title: "Bidzy UI",
-    figma: "https://www.figma.com/design/3yez3sLhEi4WFjQq35wBcE/BidzyUI?node-id=411-2516",
-    thumb: "https://www.figma.com/file/3yez3sLhEi4WFjQq35wBcE/thumbnail?node-id=411-2516&in-better-link-exp=true",
-    desc: "Logistics bidding platform UI — real-time bid dashboard, shipper and carrier flows, competitive bidding interface.",
-    tags: ["Web UI", "Logistics", "Real-time"],
-    color: "#00e5a0",
-  },
-];
+interface Design {
+  title: string;
+  figma: string;
+  thumb?: string;
+  desc: string;
+  tags: string[];
+  color: string;
+}
 
 export default function Projects() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [designs, setDesigns] = useState<Design[]>([]);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  useEffect(() => {
+    fetch("/api/projects")
+      .then((res) => res.json())
+      .then((data) => setProjects(data))
+      .catch((err) => console.error("Error loading projects:", err));
+
+    fetch("/api/designs")
+      .then((res) => res.json())
+      .then((data) => setDesigns(data))
+      .catch((err) => console.error("Error loading designs:", err));
+  }, []);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement | HTMLAnchorElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
+  };
+
+  const handleCardClick = (e: React.MouseEvent<HTMLDivElement>, project: Project) => {
+    // Don't open modal if clicking a link (GitHub/Figma buttons)
+    if ((e.target as HTMLElement).closest("a")) return;
+    setSelectedProject(project);
+  };
+
   return (
     <>
       {/* DEV PROJECTS */}
-      <section className={styles.section} id="projects">
+      <section className={`${styles.section} reveal`} id="projects">
         <p className={styles.label}>Work</p>
         <h2 className={styles.title}>Projects</h2>
-        <p className={styles.sub}>Things I&apos;ve built from scratch</p>
-        <div className={styles.grid}>
-          {PROJECTS.map((p) => (
-            <div key={p.title} className={styles.card}>
+        <p className={styles.sub}>Things I&apos;ve built from scratch — click any card to explore</p>
+        <div className={`${styles.grid} reveal-stagger`}>
+          {projects.map((p) => (
+            <div
+              key={p.title}
+              className={`${styles.card} ${styles.cardClickable}`}
+              onMouseMove={handleMouseMove}
+              onClick={(e) => handleCardClick(e, p)}
+              role="button"
+              tabIndex={0}
+              aria-label={`View ${p.title} details`}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") setSelectedProject(p);
+              }}
+            >
               <div className={styles.head}>
                 <div className={styles.ico}>{p.icon}</div>
                 <div className={styles.linkRow}>
@@ -130,24 +96,45 @@ export default function Projects() {
                   <span key={t} className={styles.tag}>{t}</span>
                 ))}
               </div>
+              {/* Screenshots count badge */}
+              {p.screenshots && p.screenshots.length > 0 && (
+                <div className={styles.screenshotBadge}>
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="3" y="3" width="18" height="18" rx="3" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" />
+                  </svg>
+                  {p.screenshots.length} screenshot{p.screenshots.length !== 1 ? "s" : ""}
+                </div>
+              )}
+              {/* Click hint */}
+              <div className={styles.clickHint}>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="16" />
+                  <line x1="8" y1="12" x2="16" y2="12" />
+                </svg>
+                View details
+              </div>
             </div>
           ))}
         </div>
       </section>
 
       {/* FIGMA DESIGNS */}
-      <section className={styles.section} id="designs">
+      <section className={`${styles.section} reveal`} id="designs">
         <p className={styles.label}>Design</p>
         <h2 className={styles.title}>UI / UX Designs</h2>
         <p className={styles.sub}>Wireframes to high-fidelity prototypes — crafted in Figma</p>
-        <div className={styles.designGrid}>
-          {DESIGNS.map((d) => (
+        <div className={`${styles.designGrid} reveal-stagger`}>
+          {designs.map((d) => (
             <a
               key={d.title}
               href={d.figma}
               target="_blank"
               rel="noreferrer"
               className={styles.designCard}
+              onMouseMove={handleMouseMove}
             >
               {/* Preview thumbnail placeholder */}
               <div className={styles.thumb} style={{ "--accent-color": d.color } as React.CSSProperties}>
@@ -176,6 +163,14 @@ export default function Projects() {
           ))}
         </div>
       </section>
+
+      {/* Project Detail Modal */}
+      {selectedProject && (
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
     </>
   );
 }
