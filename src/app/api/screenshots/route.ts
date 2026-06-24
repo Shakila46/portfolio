@@ -24,14 +24,18 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "projectTitle and file are required" }, { status: 400 });
     }
 
+    if (typeof file === 'string' || !file.arrayBuffer) {
+      return NextResponse.json({ error: "Invalid file format received by server" }, { status: 400 });
+    }
+
     // Validate file type
     const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/gif"];
     if (!allowedTypes.includes(file.type)) {
-      return NextResponse.json({ error: "Only image files are allowed (JPG, PNG, WebP, GIF)" }, { status: 400 });
+      return NextResponse.json({ error: "Only image files are allowed (JPG, PNG, WebP, GIF). Received: " + file.type }, { status: 400 });
     }
 
     // Validate file size (max 5MB)
-    if (file.size > 5 * 1024 * 1024) {
+    if (file.size && file.size > 5 * 1024 * 1024) {
       return NextResponse.json({ error: "File size must be under 5MB" }, { status: 400 });
     }
 
@@ -42,7 +46,8 @@ export async function POST(req: Request) {
     }
 
     // Generate unique filename
-    const ext = file.name.split(".").pop() || "jpg";
+    const filenameFromUpload = file.name || "upload.jpg";
+    const ext = filenameFromUpload.split(".").pop() || "jpg";
     const timestamp = Date.now();
     const filename = `screenshot_${timestamp}.${ext}`;
     const filePath = path.join(projectDir, filename);
@@ -62,9 +67,10 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({ success: true, filename });
-  } catch (e) {
+  } catch (e: any) {
     console.error("Screenshot upload error:", e);
-    return NextResponse.json({ error: "Failed to upload screenshot" }, { status: 500 });
+    fs.writeFileSync(path.join(process.cwd(), "upload_error.log"), e.stack || e.toString());
+    return NextResponse.json({ error: "Failed to upload screenshot: " + e.message }, { status: 500 });
   }
 }
 
