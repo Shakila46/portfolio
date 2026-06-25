@@ -70,9 +70,9 @@
 
 .h1 {
   font-family: 'Syne', sans-serif;
-  font-size: 3.8rem;
+  font-size: 3.6rem;
   font-weight: 800;
-  line-height: 1.05;
+  line-height: 1.1;
   letter-spacing: -0.04em;
   margin-bottom: 1.2rem;
   color: #eeeef8;
@@ -81,6 +81,22 @@
 .accent {
   color: transparent;
   -webkit-text-stroke: 2px #7b6fff;
+  white-space: nowrap;
+}
+
+.accentCursor {
+  display: inline-block;
+  color: #7b6fff;
+  -webkit-text-stroke: 0;
+  font-weight: 300;
+  animation: cursorBlink 0.8s step-start infinite;
+  margin-left: 2px;
+  vertical-align: baseline;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .roles {
@@ -318,7 +334,7 @@
   }
 
   .h1 {
-    font-size: 3rem;
+    font-size: 2.8rem;
   }
 
   .ring {

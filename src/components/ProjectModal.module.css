@@ -304,6 +304,68 @@
   background: rgba(239, 68, 68, 1);
 }
 
+/* Inline confirm bar for delete */
+.imgConfirmBar {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(10, 10, 20, 0.92);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  border-radius: 10px;
+  padding: 0.35rem 0.7rem;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+  animation: fadeInBar 0.15s ease forwards;
+}
+
+@keyframes fadeInBar {
+  from { opacity: 0; transform: translateX(-50%) translateY(6px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.imgConfirmBar span {
+  font-size: 0.72rem;
+  color: #ff6b6b;
+  font-weight: 600;
+}
+
+.imgConfirmYes {
+  background: rgba(239, 68, 68, 0.9);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.22rem 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.imgConfirmYes:hover {
+  background: rgb(239, 68, 68);
+  transform: scale(1.05);
+}
+
+.imgConfirmNo {
+  background: rgba(255, 255, 255, 0.08);
+  color: #aaa;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px;
+  padding: 0.22rem 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.imgConfirmNo:hover {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+
 /* Drag overlay */
 .dragOverlay {
   position: absolute;

@@ -95,7 +95,7 @@ export default function Hero() {
           <h1 className={styles.h1}>
             {aboutData.name}
             <br />
-            <span className={styles.accent}>{display}</span>
+            <span className={styles.accent}>{display}</span><span className={styles.accentCursor}>|</span>
           </h1>
 
           {/* Role pills */}

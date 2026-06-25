@@ -28,6 +28,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const [isAdmin, setIsAdmin] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [deleting, setDeleting] = useState<string | null>(null);
+  const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
   const [uploadMsg, setUploadMsg] = useState<{ text: string; type: "success" | "error" } | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -116,7 +117,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   // Delete screenshot
   const handleDelete = async (filename: string) => {
-    if (!confirm(`Delete this screenshot?`)) return;
     setDeleting(filename);
     try {
       const res = await fetch(
@@ -135,6 +135,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       showMsg("Network error", "error");
     }
     setDeleting(null);
+    setConfirmDelete(null);
   };
 
   // Drag-and-drop
@@ -294,17 +295,36 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                           onClick={() => setLightboxSrc(getScreenshotUrl(filename))}
                           loading="lazy"
                         />
-                        {/* Admin: delete button on each image */}
+                        {/* Admin: inline confirm delete */}
                         {isAdmin && (
-                          <button
-                            className={styles.imgDeleteBtn}
-                            onClick={(e) => { e.stopPropagation(); handleDelete(filename); }}
-                            disabled={deleting === filename}
-                            title="Delete screenshot"
-                            aria-label="Delete screenshot"
-                          >
-                            {deleting === filename ? "…" : "✕"}
-                          </button>
+                          confirmDelete === filename ? (
+                            <div className={styles.imgConfirmBar}>
+                              <span>Delete?</span>
+                              <button
+                                className={styles.imgConfirmYes}
+                                onClick={(e) => { e.stopPropagation(); handleDelete(filename); }}
+                                disabled={deleting === filename}
+                              >
+                                {deleting === filename ? "…" : "Yes"}
+                              </button>
+                              <button
+                                className={styles.imgConfirmNo}
+                                onClick={(e) => { e.stopPropagation(); setConfirmDelete(null); }}
+                              >
+                                No
+                              </button>
+                            </div>
+                          ) : (
+                            <button
+                              className={styles.imgDeleteBtn}
+                              onClick={(e) => { e.stopPropagation(); setConfirmDelete(filename); }}
+                              disabled={deleting === filename}
+                              title="Delete screenshot"
+                              aria-label="Delete screenshot"
+                            >
+                              ✕
+                            </button>
+                          )
                         )}
                       </div>
                     ))}
