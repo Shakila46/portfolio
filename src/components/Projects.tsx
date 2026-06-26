@@ -26,8 +26,13 @@ export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [designs, setDesigns] = useState<Design[]>([]);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
+    fetch("/api/auth/check")
+      .then((r) => r.json())
+      .then((d) => setIsAdmin(d.authenticated === true))
+      .catch(() => setIsAdmin(false));
     fetch("/api/projects")
       .then((res) => res.json())
       .then((data) => setProjects(data))
@@ -96,8 +101,8 @@ export default function Projects() {
                   <span key={t} className={styles.tag}>{t}</span>
                 ))}
               </div>
-              {/* Screenshots count badge */}
-              {p.screenshots && p.screenshots.length > 0 && (
+              {/* Screenshots count badge - admin only */}
+              {isAdmin && p.screenshots && p.screenshots.length > 0 && (
                 <div className={styles.screenshotBadge}>
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <rect x="3" y="3" width="18" height="18" rx="3" />

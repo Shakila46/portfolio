@@ -6,6 +6,7 @@ import Hero from "@/components/Hero";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
+import AdminBar from "@/components/AdminBar";
 
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
       <div style={{ position: "fixed", borderRadius: "50%", pointerEvents: "none", zIndex: 0, width: 400, height: 400, left: "30%", bottom: -100, background: "radial-gradient(circle,rgba(255,107,157,.07) 0%,transparent 70%)" }} />
 
       <Navbar />
+      <AdminBar />
       <Hero />
       <hr style={{ border: "none", borderTop: "1px solid #252538", position: "relative", zIndex: 1 }} />
       <Skills />
