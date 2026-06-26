@@ -8,7 +8,7 @@
   font-size: 0.7rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #7b6fff;
+  color: var(--accent);
   margin-bottom: 0.75rem;
   font-weight: 500;
 }
@@ -19,11 +19,11 @@
   font-weight: 800;
   letter-spacing: -0.03em;
   margin-bottom: 0.5rem;
-  color: #eeeef8;
+  color: var(--txt);
 }
 
 .sub {
-  color: #7a7a9a;
+  color: var(--muted);
   font-size: 0.95rem;
   margin-bottom: 3rem;
 }
@@ -38,23 +38,23 @@
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  background: #0f0f1a;
-  border: 1px solid #252538;
+  background: var(--s1);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 0.8rem 1.3rem;
   font-size: 0.875rem;
-  color: #7a7a9a;
+  color: var(--muted);
   text-decoration: none;
   transition: border-color 0.3s ease, color 0.3s ease, transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease, box-shadow 0.3s ease;
   font-family: inherit;
 }
 
 .chip:hover {
-  border-color: #00e5a0;
-  color: #eeeef8;
+  border-color: var(--a2);
+  color: var(--txt);
   transform: translateY(-5px) scale(1.03);
   box-shadow: 0 8px 20px -8px rgba(123, 111, 255, 0.25);
-  background: rgba(123, 111, 255, 0.04);
+  background: rgba(123, 111, 255, 0.06);
 }
 
 .chip svg { opacity: 0.7; flex-shrink: 0; }
@@ -62,26 +62,26 @@
 /* Email copy button */
 .emailBtn {
   cursor: pointer;
-  background: #0f0f1a;
+  background: var(--s1);
 }
 
 .emailBtn:hover {
-  border-color: #7b6fff;
-  color: #eeeef8;
+  border-color: var(--accent);
+  color: var(--txt);
   background: rgba(123, 111, 255, 0.07);
 }
 
 /* Copied! success state */
 .copied {
-  border-color: #00e5a0 !important;
-  color: #00e5a0 !important;
+  border-color: var(--a2) !important;
+  color: var(--a2) !important;
   background: rgba(0, 229, 160, 0.08) !important;
   transform: translateY(-3px);
 }
 
 .copied svg {
   opacity: 1 !important;
-  stroke: #00e5a0;
+  stroke: var(--a2);
 }
 
 /* ── Tablet ── */

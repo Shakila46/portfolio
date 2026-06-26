@@ -24,13 +24,13 @@ export default function Home() {
       <Navbar />
       <AdminBar />
       <Hero />
-      <hr style={{ border: "none", borderTop: "1px solid #252538", position: "relative", zIndex: 1 }} />
+      <hr style={{ border: "none", borderTop: "1px solid var(--border)", position: "relative", zIndex: 1 }} />
       <Skills />
-      <hr style={{ border: "none", borderTop: "1px solid #252538", position: "relative", zIndex: 1 }} />
+      <hr style={{ border: "none", borderTop: "1px solid var(--border)", position: "relative", zIndex: 1 }} />
       <Projects />
-      <hr style={{ border: "none", borderTop: "1px solid #252538", position: "relative", zIndex: 1 }} />
+      <hr style={{ border: "none", borderTop: "1px solid var(--border)", position: "relative", zIndex: 1 }} />
       <Contact />
-      <footer style={{ borderTop: "1px solid #252538", padding: "2rem 3rem", color: "#7a7a9a", fontSize: ".78rem", position: "relative", zIndex: 1, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
+      <footer style={{ borderTop: "1px solid var(--border)", padding: "2rem 3rem", color: "var(--muted)", fontSize: ".78rem", position: "relative", zIndex: 1, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
         <span>Designed &amp; built by Shakila Praween &nbsp;·&nbsp; Western Province, Sri Lanka</span>
         <a href="/login" className="footer-link">
           <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.5">

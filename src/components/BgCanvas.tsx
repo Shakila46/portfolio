@@ -28,17 +28,19 @@ export default function BgCanvas() {
         this.r = Math.random() * 1.5 + 0.5;
         this.vx = (Math.random() - 0.5) * 0.25;
         this.vy = (Math.random() - 0.5) * 0.25;
-        this.a = Math.random() * 0.35 + 0.15;
+        this.a = Math.random() * 0.25 + 0.1;
         this.colorBase = COLORS[Math.floor(Math.random() * COLORS.length)];
       }
       draw() {
+        // Reduce opacity in light mode
+        const isLight = document.documentElement.getAttribute("data-theme") === "light";
+        const alpha = isLight ? this.a * 0.5 : this.a;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-        ctx.fillStyle = `${this.colorBase}${this.a})`;
+        ctx.fillStyle = `${this.colorBase}${alpha})`;
         ctx.fill();
       }
       update() {
-        // Repulsion from mouse cursor
         if (mouse.active) {
           const dx = this.x - mouse.x;
           const dy = this.y - mouse.y;
@@ -50,7 +52,6 @@ export default function BgCanvas() {
             this.y += Math.sin(angle) * force * 1.8;
           }
         }
-
         this.x += this.vx;
         this.y += this.vy;
         if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();

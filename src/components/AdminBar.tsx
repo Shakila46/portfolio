@@ -35,6 +35,13 @@ export default function AdminBar() {
       display: "flex",
       gap: "0.5rem",
       alignItems: "center",
+      background: "var(--nav-bg)",
+      padding: "0.5rem",
+      borderRadius: "14px",
+      border: "1px solid var(--border)",
+      backdropFilter: "blur(14px)",
+      WebkitBackdropFilter: "blur(14px)",
+      boxShadow: "0 10px 30px -10px rgba(0,0,0,0.3)",
     }}>
       {/* Admin Dashboard button */}
       <a
@@ -51,8 +58,6 @@ export default function AdminBar() {
           fontSize: "0.78rem",
           fontWeight: 600,
           textDecoration: "none",
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
           transition: "background 0.2s, transform 0.2s",
           cursor: "pointer",
         }}
@@ -90,8 +95,6 @@ export default function AdminBar() {
           fontSize: "0.78rem",
           fontWeight: 600,
           cursor: loggingOut ? "not-allowed" : "pointer",
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
           opacity: loggingOut ? 0.6 : 1,
           transition: "background 0.2s, transform 0.2s",
         }}

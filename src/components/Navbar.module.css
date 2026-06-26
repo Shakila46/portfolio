@@ -1,35 +1,43 @@
 .nav {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 1.5rem;
+  left: 0; right: 0;
+  margin: 0 auto;
+  width: 92%;
+  max-width: 960px;
   z-index: 100;
-  padding: 1.1rem 3rem;
+  padding: 0.8rem 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(7, 7, 14, 0.75);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  transition: background 0.3s;
+  background: var(--nav-bg);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.15);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .navScrolled {
-  background: rgba(7, 7, 14, 0.95);
+  background: var(--nav-scrolled);
+  padding: 0.6rem 1.5rem;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
 }
 
 .logo {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.15rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: #eeeef8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   z-index: 110;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.logo em {
-  color: #7b6fff;
-  font-style: normal;
+.logo:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 10px rgba(123, 111, 255, 0.6)) drop-shadow(0 0 20px rgba(0, 212, 255, 0.3));
 }
 
 /* Desktop links */
@@ -39,7 +47,7 @@
 }
 
 .links a {
-  color: #7a7a9a;
+  color: var(--muted);
   text-decoration: none;
   font-size: 0.82rem;
   letter-spacing: 0.06em;
@@ -54,11 +62,11 @@
   position: absolute;
   bottom: -4px; left: 0;
   width: 0; height: 1px;
-  background: #7b6fff;
+  background: var(--accent);
   transition: width 0.3s;
 }
 
-.links a:hover { color: #eeeef8; }
+.links a:hover { color: var(--txt); }
 .links a:hover::after { width: 100%; }
 
 /* Login button in desktop nav */
@@ -88,6 +96,76 @@
   color: #fff !important;
 }
 
+/* ── Right side controls ── */
+.rightControls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  position: relative;
+  z-index: 110;
+}
+
+/* ── Theme toggle pill ── */
+.themeToggle {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(123,111,255,0.08);
+  border: 1px solid rgba(123,111,255,0.22);
+  border-radius: 100px;
+  padding: 0.3rem 0.55rem;
+  color: var(--muted);
+  cursor: none;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+
+.themeToggle:hover {
+  background: rgba(123,111,255,0.16);
+  border-color: rgba(123,111,255,0.45);
+  color: var(--txt);
+}
+
+.themeToggleTrack {
+  position: relative;
+  width: 30px;
+  height: 16px;
+  background: rgba(123,111,255,0.18);
+  border-radius: 100px;
+  border: 1px solid rgba(123,111,255,0.3);
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+
+[data-theme="light"] .themeToggleTrack {
+  background: rgba(99,85,232,0.2);
+}
+
+.themeToggleThumb {
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), background 0.3s;
+  box-shadow: 0 0 6px rgba(123,111,255,0.6);
+}
+
+.themeToggleThumbLight {
+  transform: translateX(14px);
+  background: #f59e0b;
+  box-shadow: 0 0 6px rgba(245,158,11,0.6);
+}
+
+.themeIcon {
+  width: 14px; height: 14px;
+  flex-shrink: 0;
+  transition: opacity 0.2s, transform 0.3s;
+  position: absolute;
+}
+
+.themeIconVisible  { opacity: 1;  transform: scale(1)   rotate(0deg);   position: static; }
+.themeIconHidden   { opacity: 0;  transform: scale(0.5) rotate(90deg);  width: 0; height: 0; overflow: hidden; }
+
 /* Hamburger button — hidden on desktop */
 .hamburger {
   display: none;
@@ -108,7 +186,7 @@
   display: block;
   width: 100%;
   height: 2px;
-  background: #eeeef8;
+  background: var(--txt);
   border-radius: 2px;
   transition: transform 0.3s, opacity 0.3s;
   transform-origin: center;
@@ -131,7 +209,7 @@
   display: none;
   position: fixed;
   top: 0; left: 0; right: 0;
-  background: rgba(7, 7, 14, 0.98);
+  background: var(--nav-scrolled);
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   padding: 5.5rem 2rem 2.5rem;
@@ -140,7 +218,7 @@
   z-index: 105;
   transform: translateY(-100%);
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  border-bottom: 1px solid #252538;
+  border-bottom: 1px solid var(--border);
 }
 
 .mobileMenuOpen {
@@ -148,14 +226,14 @@
 }
 
 .mobileMenu a {
-  color: #7a7a9a;
+  color: var(--muted);
   text-decoration: none;
   font-size: 1.05rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-weight: 500;
   padding: 1rem 0;
-  border-bottom: 1px solid #1a1a28;
+  border-bottom: 1px solid var(--border);
   transition: color 0.2s;
 }
 
@@ -164,27 +242,34 @@
 }
 
 .mobileMenu a:hover {
-  color: #7b6fff;
+  color: var(--accent);
 }
 
-/* Mobile login button */
-.mobileLoginBtn {
+/* Mobile theme button */
+.mobileThemeBtn {
   display: flex !important;
   align-items: center;
-  gap: 0.5rem;
-  color: #a99fff !important;
+  gap: 0.6rem;
+  color: var(--accent) !important;
   font-weight: 600 !important;
+  font-size: 0.9rem;
   border-bottom: none !important;
   margin-top: 0.5rem;
   padding: 0.8rem 1rem !important;
-  background: rgba(123, 111, 255, 0.08);
+  background: rgba(123, 111, 255, 0.07);
   border: 1px solid rgba(123, 111, 255, 0.2) !important;
   border-radius: 10px;
+  width: 100%;
+  cursor: none;
+  transition: background 0.25s, color 0.25s;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  text-transform: none;
 }
 
-.mobileLoginBtn:hover {
+.mobileThemeBtn:hover {
   background: rgba(123, 111, 255, 0.15);
-  color: #fff !important;
+  color: var(--txt) !important;
 }
 
 /* Backdrop */
@@ -198,7 +283,13 @@
 /* ── Mobile breakpoint ── */
 @media (max-width: 768px) {
   .nav {
-    padding: 1rem 1.25rem;
+    top: 1rem;
+    padding: 0.7rem 1.25rem;
+    border-radius: 20px;
+  }
+  
+  .navScrolled {
+    padding: 0.7rem 1.25rem;
   }
 
   .links {

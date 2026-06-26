@@ -1,6 +1,8 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-:root {
+/* ── Dark theme (default) ── */
+:root,
+[data-theme="dark"] {
   --bg: #07070e;
   --s1: #0f0f1a;
   --s2: #171726;
@@ -11,8 +13,28 @@
   --txt: #eeeef8;
   --muted: #7a7a9a;
   --border: #252538;
+  --card-bg: #0d0d18;
+  --nav-bg: rgba(7,7,14,0.82);
+  --nav-scrolled: rgba(7,7,14,0.97);
   --font-syne: var(--font-syne, 'Syne', sans-serif);
   --font-dm: var(--font-dm, 'DM Sans', sans-serif);
+}
+
+/* ── Light theme ── */
+[data-theme="light"] {
+  --bg: #f4f4fb;
+  --s1: #eaeaf6;
+  --s2: #ddddf0;
+  --s3: #d2d2e8;
+  --accent: #6355e8;
+  --a2: #00b87a;
+  --a3: #e8457f;
+  --txt: #16162a;
+  --muted: #5a5a7a;
+  --border: #c8c8de;
+  --card-bg: #ffffff;
+  --nav-bg: rgba(244,244,251,0.82);
+  --nav-scrolled: rgba(244,244,251,0.97);
 }
 
 html { scroll-behavior: smooth; }
@@ -22,9 +44,19 @@ body {
   color: var(--txt);
   font-family: var(--font-dm), 'DM Sans', sans-serif;
   overflow-x: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
-a, button { cursor: pointer !important; }
+/* Custom cursor — hide native on desktop */
+@media (pointer: fine) {
+  *, *::before, *::after { cursor: none !important; }
+}
+
+/* Restore native cursor on touch / mobile */
+@media (pointer: coarse) {
+  a, button { cursor: pointer !important; }
+}
+
 
 h1, h2, h3 {
   font-family: var(--font-syne), 'Syne', sans-serif;

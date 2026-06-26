@@ -46,9 +46,11 @@ export async function POST(req: Request) {
       // Update existing project
       const idx = projects.findIndex((p: any) => p.title.toLowerCase() === originalTitle.toLowerCase());
       if (idx !== -1) {
-        projects[idx] = project;
+        // Preserve existing screenshots when updating
+        const existingScreenshots = projects[idx].screenshots || [];
+        projects[idx] = { ...project, screenshots: existingScreenshots };
       } else {
-        projects.push(project);
+        projects.push({ ...project, screenshots: [] });
       }
     } else {
       // Add new project
@@ -56,7 +58,7 @@ export async function POST(req: Request) {
       if (exists) {
         return NextResponse.json({ error: "Project with this title already exists" }, { status: 400 });
       }
-      projects.push(project);
+      projects.push({ ...project, screenshots: [] });
     }
 
     saveProjects(projects);

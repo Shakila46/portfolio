@@ -75,7 +75,7 @@
   line-height: 1.1;
   letter-spacing: -0.04em;
   margin-bottom: 1.2rem;
-  color: #eeeef8;
+  color: var(--txt);
 }
 
 .accent {
@@ -156,7 +156,7 @@
 }
 
 .desc {
-  color: #7a7a9a;
+  color: var(--muted);
   font-size: 1rem;
   line-height: 1.8;
   margin-bottom: 2rem;
@@ -164,7 +164,7 @@
 }
 
 .desc strong {
-  color: #eeeef8;
+  color: var(--txt);
   font-weight: 500;
 }
 
@@ -175,7 +175,7 @@
 }
 
 .btnP {
-  background: #7b6fff;
+  background: var(--accent);
   color: #fff;
   padding: 0.75rem 1.8rem;
   border-radius: 10px;
@@ -195,13 +195,13 @@
 
 .btnO {
   background: transparent;
-  color: #eeeef8;
+  color: var(--txt);
   padding: 0.75rem 1.8rem;
   border-radius: 10px;
   text-decoration: none;
   font-weight: 500;
   font-size: 0.88rem;
-  border: 1px solid #252538;
+  border: 1px solid var(--border);
   transition: border-color 0.2s, transform 0.2s;
   display: inline-flex;
   align-items: center;
@@ -209,7 +209,7 @@
 }
 
 .btnO:hover {
-  border-color: #7b6fff;
+  border-color: var(--accent);
   transform: translateY(-2px);
 }
 
@@ -272,8 +272,8 @@
 /* Floating tags */
 .ftag {
   position: relative;
-  background: rgba(15, 15, 26, 0.9);
-  border: 3px solid #252538;
+  background: var(--s1);
+  border: 3px solid var(--border);
   border-radius: 10px;
   padding: 0.5rem 0.9rem;
   font-size: 0.75rem;
@@ -282,7 +282,7 @@
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   white-space: nowrap;
-  color: #eeeef8;
+  color: var(--txt);
   display: flex;
   align-items: center;
   gap: 0.4rem;
