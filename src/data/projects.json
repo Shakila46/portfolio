@@ -12,7 +12,16 @@
       "BLoC",
       "REST API"
     ],
-    "screenshots": []
+    "screenshots": [
+      "screenshot_1782579053524.JPG",
+      "screenshot_1782579057793.JPG",
+      "screenshot_1782579061947.JPG",
+      "screenshot_1782579066412.JPG",
+      "screenshot_1782579072768.JPG",
+      "screenshot_1782579076194.JPG",
+      "screenshot_1782579082205.JPG",
+      "screenshot_1782579086638.JPG"
+    ]
   },
   {
     "icon": "🚚",
@@ -83,13 +92,17 @@
     "title": "AI Assignment Helper",
     "gh": "https://github.com/Shakila46/MY_Assignment_Ai.git",
     "figma": null,
+    "demo": "https://myassignmentai-h2l2rbpmhkdx5mewgjyeit.streamlit.app/",
     "desc": "Lightweight AI tool using Python, Streamlit and Groq API for context-aware structured academic content generation.",
     "stack": [
       "Python",
       "Streamlit",
       "Groq API"
     ],
-    "screenshots": []
+    "screenshots": [
+      "screenshot_1782579740100.png",
+      "screenshot_1782579740223.png"
+    ]
   },
   {
     "icon": "⚙️",
@@ -102,6 +115,10 @@
       "YAML",
       "DevOps"
     ],
-    "screenshots": []
+    "screenshots": [
+      "screenshot_1782579363015.jpeg",
+      "screenshot_1782579363202.jpeg",
+      "screenshot_1782579363419.jpeg"
+    ]
   }
 ]

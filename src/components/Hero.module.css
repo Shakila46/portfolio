@@ -240,7 +240,7 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: #07070e;
+  background: var(--bg);
 }
 
 @keyframes spin {
@@ -251,7 +251,7 @@
   position: absolute;
   inset: 4px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #171726, #1e1e30);
+  background: var(--s2);
   z-index: 1;
   display: flex;
   align-items: center;

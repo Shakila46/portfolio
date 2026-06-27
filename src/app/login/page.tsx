@@ -36,7 +36,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div style={{
+    <div className="show-cursor" style={{
       minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center",
       background: "#07070e", position: "relative", overflow: "hidden", fontFamily: "var(--font-dm), sans-serif",
       padding: "1.5rem"

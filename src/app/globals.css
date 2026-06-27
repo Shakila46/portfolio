@@ -18,23 +18,35 @@
   --nav-scrolled: rgba(7,7,14,0.97);
   --font-syne: var(--font-syne, 'Syne', sans-serif);
   --font-dm: var(--font-dm, 'DM Sans', sans-serif);
+  
+  /* Modal Specific Variables */
+  --modal-bg: linear-gradient(160deg, #0f0f1e 0%, #0a0a16 100%);
+  --modal-overlay: rgba(4, 4, 10, 0.85);
+  --modal-close-bg: linear-gradient(to bottom, #0f0f1e 60%, transparent);
+  --modal-close-btn: rgba(255, 255, 255, 0.05);
 }
 
 /* ── Light theme ── */
 [data-theme="light"] {
-  --bg: #f4f4fb;
-  --s1: #eaeaf6;
-  --s2: #ddddf0;
-  --s3: #d2d2e8;
-  --accent: #6355e8;
-  --a2: #00b87a;
-  --a3: #e8457f;
-  --txt: #16162a;
-  --muted: #5a5a7a;
-  --border: #c8c8de;
-  --card-bg: #ffffff;
-  --nav-bg: rgba(244,244,251,0.82);
-  --nav-scrolled: rgba(244,244,251,0.97);
+  --bg: #f8fafc;
+  --s1: #f1f5f9;
+  --s2: #e2e8f0;
+  --s3: #cbd5e1;
+  --accent: #4f46e5;
+  --a2: #059669;
+  --a3: #db2777;
+  --txt: #0f172a;
+  --muted: #475569;
+  --border: #cbd5e1;
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --nav-bg: rgba(248, 250, 252, 0.75);
+  --nav-scrolled: rgba(255, 255, 255, 0.95);
+  
+  /* Modal Specific Variables for Light Mode */
+  --modal-bg: linear-gradient(160deg, #ffffff 0%, #f1f5f9 100%);
+  --modal-overlay: rgba(15, 23, 42, 0.5);
+  --modal-close-bg: linear-gradient(to bottom, #ffffff 60%, transparent);
+  --modal-close-btn: rgba(15, 23, 42, 0.05);
 }
 
 html { scroll-behavior: smooth; }
@@ -55,6 +67,11 @@ body {
 /* Restore native cursor on touch / mobile */
 @media (pointer: coarse) {
   a, button { cursor: pointer !important; }
+}
+
+/* Override for admin/login pages where custom cursor is not rendered */
+.show-cursor, .show-cursor *, .show-cursor *::before, .show-cursor *::after {
+  cursor: auto !important;
 }
 
 

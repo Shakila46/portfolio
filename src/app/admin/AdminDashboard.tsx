@@ -10,6 +10,7 @@ interface Project {
   desc: string;
   stack: string[];
   screenshots: string[];
+  demo?: string | null;
 }
 
 interface Design {
@@ -48,6 +49,7 @@ export default function AdminDashboard() {
     title: "",
     gh: "",
     figma: "",
+    demo: "",
     desc: "",
     stack: "",
   });
@@ -155,6 +157,7 @@ export default function AdminDashboard() {
         title: projectForm.title,
         gh: projectForm.gh,
         figma: projectForm.figma || null,
+        demo: projectForm.demo || null,
         desc: projectForm.desc,
         stack: projectForm.stack.split(",").map(t => t.trim()).filter(Boolean),
       },
@@ -189,6 +192,7 @@ export default function AdminDashboard() {
       title: p.title,
       gh: p.gh,
       figma: p.figma || "",
+      demo: p.demo || "",
       desc: p.desc,
       stack: p.stack.join(", "),
     });
@@ -220,7 +224,7 @@ export default function AdminDashboard() {
   };
 
   const resetProjectForm = () => {
-    setProjectForm({ icon: "🌱", title: "", gh: "", figma: "", desc: "", stack: "" });
+    setProjectForm({ icon: "🌱", title: "", gh: "", figma: "", demo: "", desc: "", stack: "" });
     setEditingProjectTitle(null);
   };
 
@@ -440,7 +444,7 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div style={{
+    <div className="show-cursor" style={{
       minHeight: "100vh", background: "#07070e", color: "#eeeef8",
       fontFamily: "var(--font-dm), sans-serif", padding: "2rem 3rem", position: "relative"
     }}>
@@ -597,6 +601,17 @@ export default function AdminDashboard() {
                   value={projectForm.gh}
                   onChange={(e) => setProjectForm({ ...projectForm, gh: e.target.value })}
                   placeholder="https://github.com/username/repo"
+                  style={{ width: "100%", background: "#07070e", border: "1px solid #252538", borderRadius: "8px", padding: "0.6rem 0.8rem", fontSize: "0.85rem", color: "#fff", outline: "none" }}
+                />
+              </div>
+
+              <div>
+                <label style={{ display: "block", color: "#7a7a9a", fontSize: "0.75rem", marginBottom: "0.4rem" }}>Live Demo URL (Optional)</label>
+                <input
+                  type="url"
+                  value={projectForm.demo}
+                  onChange={(e) => setProjectForm({ ...projectForm, demo: e.target.value })}
+                  placeholder="https://yourapp.com"
                   style={{ width: "100%", background: "#07070e", border: "1px solid #252538", borderRadius: "8px", padding: "0.6rem 0.8rem", fontSize: "0.85rem", color: "#fff", outline: "none" }}
                 />
               </div>

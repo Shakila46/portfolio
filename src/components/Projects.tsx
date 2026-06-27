@@ -11,6 +11,7 @@ interface Project {
   desc: string;
   stack: string[];
   screenshots: string[];
+  demo?: string | null;
 }
 
 interface Design {
@@ -80,9 +81,21 @@ export default function Projects() {
                 if (e.key === "Enter" || e.key === " ") setSelectedProject(p);
               }}
             >
-              <div className={styles.head}>
-                <div className={styles.ico}>{p.icon}</div>
+              {p.screenshots && p.screenshots.length > 0 && (
+                <div className={styles.coverWrap}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={`/screenshots/${p.title}/${p.screenshots[0]}`} alt={p.title} className={styles.coverImg} />
+                </div>
+              )}
+              <div className={styles.head} style={{ marginTop: p.screenshots && p.screenshots.length > 0 ? '1rem' : 0 }}>
+                <div aria-hidden="true" /> {/* Spacer */}
                 <div className={styles.linkRow}>
+                  {p.demo && (
+                    <a href={p.demo} target="_blank" rel="noreferrer" className={styles.figmaBtn} style={{ background: 'var(--accent)', color: '#fff', border: 'none' }}>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                      Live App
+                    </a>
+                  )}
                   {p.figma && (
                     <a href={p.figma} target="_blank" rel="noreferrer" className={styles.figmaBtn}>
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 24c2.2 0 4-1.8 4-4v-4H8c-2.2 0-4 1.8-4 4s1.8 4 4 4z"/><path d="M4 12c0-2.2 1.8-4 4-4h4v8H8c-2.2 0-4-1.8-4-4z"/><path d="M4 4c0-2.2 1.8-4 4-4h4v8H8C5.8 8 4 6.2 4 4z"/><path d="M12 0h4c2.2 0 4 1.8 4 4s-1.8 4-4 4h-4V0z"/><path d="M20 12c0 2.2-1.8 4-4 4s-4-1.8-4-4 1.8-4 4-4 4 1.8 4 4z"/></svg>

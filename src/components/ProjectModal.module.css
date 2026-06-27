@@ -1,7 +1,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(4, 4, 10, 0.85);
+  background: var(--modal-overlay);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   z-index: 1000;
@@ -17,7 +17,7 @@
 }
 
 .modal {
-  background: linear-gradient(160deg, #0f0f1e 0%, #0a0a16 100%);
+  background: var(--modal-bg);
   border: 1px solid rgba(123, 111, 255, 0.2);
   border-bottom: none;
   border-radius: 28px 28px 0 0;
@@ -59,16 +59,16 @@
   display: flex;
   justify-content: flex-end;
   padding: 1.2rem 1.5rem 0;
-  background: linear-gradient(to bottom, #0f0f1e 60%, transparent);
+  background: var(--modal-close-bg);
 }
 
 .closeBtnInner {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.05);
-  color: #7a7a9a;
+  border: 1px solid var(--border);
+  background: var(--modal-close-btn);
+  color: var(--muted);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,8 +78,8 @@
 }
 
 .closeBtnInner:hover {
-  background: rgba(255, 255, 255, 0.12);
-  color: #eeeef8;
+  background: var(--border);
+  color: var(--txt);
   transform: scale(1.1);
 }
 
@@ -118,7 +118,7 @@
   font-size: 1.9rem;
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: #eeeef8;
+  color: var(--txt);
   margin-bottom: 0.5rem;
   line-height: 1.1;
 }
@@ -156,7 +156,7 @@
   font-size: 0.7rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #7b6fff;
+  color: var(--accent);
   font-weight: 500;
   margin-bottom: 0;
 }
@@ -401,7 +401,7 @@
   background: rgba(15, 15, 30, 0.85);
   border: 1px solid rgba(123, 111, 255, 0.25);
   border-radius: 50%;
-  color: #eeeef8;
+  color: var(--txt);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -479,13 +479,13 @@
   font-size: 0.7rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #7b6fff;
+  color: var(--accent);
   font-weight: 500;
   margin-bottom: 0.6rem;
 }
 
 .desc {
-  color: #a0a0be;
+  color: var(--muted);
   font-size: 0.9rem;
   line-height: 1.75;
 }
@@ -515,7 +515,7 @@
 
 .btnPrimary:hover {
   background: rgba(123, 111, 255, 0.28);
-  color: #eeeef8;
+  color: var(--txt);
   transform: translateY(-2px);
 }
 
@@ -536,7 +536,7 @@
 
 .btnFigma:hover {
   background: rgba(167, 139, 250, 0.18);
-  color: #eeeef8;
+  color: var(--txt);
   transform: translateY(-2px);
 }
 

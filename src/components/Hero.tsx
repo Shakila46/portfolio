@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "./Hero.module.css";
 
 // Default words fallback
-const DEFAULT_WORDS = ["Praween"];
+const DEFAULT_WORDS = ["a Developer"];
 
 export default function Hero() {
   const [display, setDisplay] = useState("");

@@ -142,6 +142,30 @@
   font-size: 1.15rem;
 }
 
+/* Cover Image Preview */
+.coverWrap {
+  width: 100%;
+  height: 170px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: -0.2rem;
+  border: 1px solid var(--border);
+  position: relative;
+  background: var(--s2);
+}
+
+.coverImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .coverImg {
+  transform: scale(1.04);
+}
+
 .gh {
   font-size: 0.75rem;
   color: var(--muted);
