@@ -31,38 +31,17 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    function type() {
-      const words = wordsRef.current;
-      const word = words[wi.current];
-      
-      if (!word) {
-        timeout = setTimeout(type, 1800);
-        return;
-      }
+    const words = wordsRef.current;
+    let interval: NodeJS.Timeout;
 
-      if (!deleting.current) {
-        setDisplay(word.slice(0, ci.current + 1));
-        ci.current++;
-        if (ci.current === word.length) {
-          deleting.current = true;
-          timeout = setTimeout(type, 1800);
-          return;
-        }
-      } else {
-        setDisplay(word.slice(0, ci.current - 1));
-        ci.current--;
-        if (ci.current === 0) {
-          deleting.current = false;
-          wi.current = (wi.current + 1) % words.length;
-        }
-      }
-      timeout = setTimeout(type, deleting.current ? 60 : 100);
+    if (words.length > 0) {
+      interval = setInterval(() => {
+        wi.current = (wi.current + 1) % words.length;
+        setDisplay(words[wi.current]);
+      }, 3000); // Change word every 3 seconds
     }
     
-    // Start typing animation after a small delay
-    timeout = setTimeout(type, 1200);
-    return () => clearTimeout(timeout);
+    return () => clearInterval(interval);
   }, [aboutData]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -95,7 +74,9 @@ export default function Hero() {
           <h1 className={styles.h1}>
             {aboutData.name}
             <br />
-            <span className={styles.accent}>{display}</span><span className={styles.accentCursor}>|</span>
+            <span key={display} className={`${styles.accent} ${styles.wordSlideUp}`}>
+              {display}
+            </span>
           </h1>
 
           {/* Role pills */}

@@ -2,26 +2,26 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import styles from "./ProjectModal.module.css";
 
-interface Project {
-  icon: string;
+interface Design {
   title: string;
-  gh: string;
-  figma: string | null;
+  figma: string;
+  thumb?: string;
   desc: string;
-  stack: string[];
-  screenshots: string[];
+  tags: string[];
+  color: string;
+  screenshots?: string[];
 }
 
-interface ProjectModalProps {
-  project: Project;
+interface DesignModalProps {
+  design: Design;
   onClose: () => void;
 }
 
-export default function ProjectModal({ project, onClose }: ProjectModalProps) {
+export default function DesignModal({ design, onClose }: DesignModalProps) {
   const galleryRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
-  const [localScreenshots, setLocalScreenshots] = useState<string[]>(project.screenshots || []);
+  const [localScreenshots, setLocalScreenshots] = useState<string[]>(design.screenshots || []);
   const screenshots = localScreenshots;
 
   // Admin state
@@ -79,7 +79,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const next = () => scrollTo(Math.min(activeIndex + 1, screenshots.length - 1));
 
   const getScreenshotUrl = (filename: string) =>
-    `/screenshots/${encodeURIComponent(project.title)}/${encodeURIComponent(filename)}`;
+    `/screenshots/${encodeURIComponent(design.title)}/${encodeURIComponent(filename)}`;
 
   // Show notification
   const showMsg = (text: string, type: "success" | "error") => {
@@ -94,8 +94,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     const uploaded: string[] = [];
     for (const file of Array.from(files)) {
       const formData = new FormData();
-      formData.append("projectTitle", project.title);
-      formData.append("type", "project");
+      formData.append("projectTitle", design.title);
+      formData.append("type", "design");
       formData.append("file", file);
       try {
         const res = await fetch("/api/screenshots", { method: "POST", body: formData });
@@ -121,7 +121,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     setDeleting(filename);
     try {
       const res = await fetch(
-        `/api/screenshots?project=${encodeURIComponent(project.title)}&type=project&filename=${encodeURIComponent(filename)}`,
+        `/api/screenshots?project=${encodeURIComponent(design.title)}&type=design&filename=${encodeURIComponent(filename)}`,
         { method: "DELETE" }
       );
       const data = await res.json();
@@ -155,7 +155,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
         aria-modal="true"
         role="dialog"
-        aria-label={`${project.title} details`}
+        aria-label={`${design.title} details`}
       >
         <div className={styles.modal}>
           {/* Sticky close button */}
@@ -171,11 +171,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           <div className={styles.content}>
             {/* Header */}
             <div className={styles.header}>
-              <div className={styles.iconWrap}>{project.icon}</div>
+              <div className={styles.iconWrap}>🎨</div>
               <div className={styles.headerInfo}>
-                <h2 className={styles.projectTitle}>{project.title}</h2>
+                <h2 className={styles.projectTitle}>{design.title}</h2>
                 <div className={styles.stack}>
-                  {project.stack.map((t) => (
+                  {design.tags.map((t) => (
                     <span key={t} className={styles.tag}>{t}</span>
                   ))}
                 </div>
@@ -291,7 +291,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={getScreenshotUrl(filename)}
-                          alt={`${project.title} screenshot ${i + 1}`}
+                          alt={`${design.title} screenshot ${i + 1}`}
                           className={styles.galleryImg}
                           onClick={() => setLightboxSrc(getScreenshotUrl(filename))}
                           loading="lazy"
@@ -362,21 +362,15 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             {/* Description */}
             <div className={styles.descSection}>
               <p className={styles.sectionLabel}>About</p>
-              <p className={styles.desc}>{project.desc}</p>
+              <p className={styles.desc}>{design.desc}</p>
             </div>
 
             <hr className={styles.divider} />
 
             {/* Action buttons */}
             <div className={styles.actions}>
-              <a href={project.gh} target="_blank" rel="noreferrer" className={styles.btnPrimary}>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
-                </svg>
-                View on GitHub
-              </a>
-              {project.figma && (
-                <a href={project.figma} target="_blank" rel="noreferrer" className={styles.btnFigma}>
+              {design.figma && (
+                <a href={design.figma} target="_blank" rel="noreferrer" className={styles.btnFigma}>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M8 24c2.2 0 4-1.8 4-4v-4H8c-2.2 0-4 1.8-4 4s1.8 4 4 4z" />
                     <path d="M4 12c0-2.2 1.8-4 4-4h4v8H8c-2.2 0-4-1.8-4-4z" />

@@ -115,7 +115,7 @@
   border-radius: 100px;
   padding: 0.3rem 0.55rem;
   color: var(--muted);
-  cursor: none;
+  cursor: pointer;
   transition: background 0.25s, border-color 0.25s, color 0.25s;
 }
 
@@ -260,7 +260,7 @@
   border: 1px solid rgba(123, 111, 255, 0.2) !important;
   border-radius: 10px;
   width: 100%;
-  cursor: none;
+  cursor: pointer;
   transition: background 0.25s, color 0.25s;
   text-decoration: none;
   letter-spacing: 0.03em;

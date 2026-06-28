@@ -18,6 +18,7 @@ export async function POST(req: Request) {
   try {
     const formData = await req.formData();
     const projectTitle = formData.get("projectTitle") as string;
+    const type = formData.get("type") as string;
     const file = formData.get("file") as File;
 
     if (!projectTitle || !file) {
@@ -56,14 +57,29 @@ export async function POST(req: Request) {
     const buffer = Buffer.from(await file.arrayBuffer());
     fs.writeFileSync(filePath, buffer);
 
-    // Update projects.json to add screenshot filename
-    const projectsPath = path.join(process.cwd(), "src/data/projects.json");
-    const projects = JSON.parse(fs.readFileSync(projectsPath, "utf8"));
-    const project = projects.find((p: any) => p.title === projectTitle);
-    if (project) {
-      if (!project.screenshots) project.screenshots = [];
-      project.screenshots.push(filename);
-      fs.writeFileSync(projectsPath, JSON.stringify(projects, null, 2), "utf8");
+    // Update projects.json or designs.json based on type
+    if (type === "design") {
+      const designsPath = path.join(process.cwd(), "src/data/designs.json");
+      let designs = JSON.parse(fs.readFileSync(designsPath, "utf8"));
+      let design = designs.find((d: any) => d.title === projectTitle);
+      if (design) {
+        if (!design.screenshots) design.screenshots = [];
+        design.screenshots.push(filename);
+        fs.writeFileSync(designsPath, JSON.stringify(designs, null, 2), "utf8");
+      } else {
+        throw new Error("Design not found with title: " + projectTitle);
+      }
+    } else {
+      const projectsPath = path.join(process.cwd(), "src/data/projects.json");
+      let projects = JSON.parse(fs.readFileSync(projectsPath, "utf8"));
+      let project = projects.find((p: any) => p.title === projectTitle);
+      if (project) {
+        if (!project.screenshots) project.screenshots = [];
+        project.screenshots.push(filename);
+        fs.writeFileSync(projectsPath, JSON.stringify(projects, null, 2), "utf8");
+      } else {
+        throw new Error("Project not found with title: " + projectTitle);
+      }
     }
 
     return NextResponse.json({ success: true, filename });
@@ -83,6 +99,7 @@ export async function DELETE(req: Request) {
     const { searchParams } = new URL(req.url);
     const projectTitle = searchParams.get("project");
     const filename = searchParams.get("filename");
+    const type = searchParams.get("type");
 
     if (!projectTitle || !filename) {
       return NextResponse.json({ error: "project and filename are required" }, { status: 400 });
@@ -98,13 +115,23 @@ export async function DELETE(req: Request) {
       fs.unlinkSync(filePath);
     }
 
-    // Update projects.json to remove screenshot filename
-    const projectsPath = path.join(process.cwd(), "src/data/projects.json");
-    const projects = JSON.parse(fs.readFileSync(projectsPath, "utf8"));
-    const project = projects.find((p: any) => p.title === projectTitle);
-    if (project && project.screenshots) {
-      project.screenshots = project.screenshots.filter((s: string) => s !== filename);
-      fs.writeFileSync(projectsPath, JSON.stringify(projects, null, 2), "utf8");
+    // Update projects.json or designs.json based on type
+    if (type === "design") {
+      const designsPath = path.join(process.cwd(), "src/data/designs.json");
+      let designs = JSON.parse(fs.readFileSync(designsPath, "utf8"));
+      let design = designs.find((d: any) => d.title === projectTitle);
+      if (design && design.screenshots) {
+        design.screenshots = design.screenshots.filter((s: string) => s !== filename);
+        fs.writeFileSync(designsPath, JSON.stringify(designs, null, 2), "utf8");
+      }
+    } else {
+      const projectsPath = path.join(process.cwd(), "src/data/projects.json");
+      let projects = JSON.parse(fs.readFileSync(projectsPath, "utf8"));
+      let project = projects.find((p: any) => p.title === projectTitle);
+      if (project && project.screenshots) {
+        project.screenshots = project.screenshots.filter((s: string) => s !== filename);
+        fs.writeFileSync(projectsPath, JSON.stringify(projects, null, 2), "utf8");
+      }
     }
 
     return NextResponse.json({ success: true });

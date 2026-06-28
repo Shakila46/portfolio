@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
@@ -102,19 +103,19 @@ export default function LoginPage() {
             />
           </div>
 
-          <div>
+          <div style={{ position: "relative" }}>
             <label style={{ display: "block", color: "#eeeef8", fontSize: "0.8rem", fontWeight: 500, marginBottom: "0.5rem" }}>
               Password
             </label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
               style={{
                 width: "100%", background: "rgba(7, 7, 14, 0.6)", border: "1px solid #252538",
-                borderRadius: "10px", padding: "0.8rem 1rem", fontSize: "0.88rem", color: "#eeeef8",
+                borderRadius: "10px", padding: "0.8rem 1rem", paddingRight: "2.8rem", fontSize: "0.88rem", color: "#eeeef8",
                 outline: "none", transition: "border-color 0.25s, box-shadow 0.25s"
               }}
               onFocus={(e) => {
@@ -126,6 +127,38 @@ export default function LoginPage() {
                 e.target.style.boxShadow = "none";
               }}
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              style={{
+                position: "absolute",
+                right: "12px",
+                bottom: "8px",
+                background: "none",
+                border: "none",
+                color: "#7a7a9a",
+                cursor: "pointer",
+                padding: "4px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                transition: "color 0.2s"
+              }}
+              onMouseOver={(e) => e.currentTarget.style.color = "#eeeef8"}
+              onMouseOut={(e) => e.currentTarget.style.color = "#7a7a9a"}
+            >
+              {showPassword ? (
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                  <line x1="1" y1="1" x2="23" y2="23"></line>
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              )}
+            </button>
           </div>
 
           <button

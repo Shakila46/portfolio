@@ -81,22 +81,22 @@
 .accent {
   color: transparent;
   -webkit-text-stroke: 2px #7b6fff;
-  white-space: nowrap;
 }
 
-.accentCursor {
+.wordSlideUp {
   display: inline-block;
-  color: #7b6fff;
-  -webkit-text-stroke: 0;
-  font-weight: 300;
-  animation: cursorBlink 0.8s step-start infinite;
-  margin-left: 2px;
-  vertical-align: baseline;
+  animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes cursorBlink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+@keyframes slideUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .roles {
